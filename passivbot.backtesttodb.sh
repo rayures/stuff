@@ -1,4 +1,10 @@
 #!/bin/bash
+
+#usage: 
+# create `passivbotresults.symbollist.txt` file with the symbols to test
+# adjust variable in this file where needed
+# run with `bash passivbot.backtesttodb.sh`
+
 version="520"
 basepath="/home/v520"
 
