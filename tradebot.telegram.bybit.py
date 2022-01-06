@@ -11,6 +11,17 @@ import timeit
 #
 # python3 <script>.py
 #
+# performance from a VPS in signapore:
+#  symbol 'ANTUSDT' published 
+#  Short ANTUSDT: 21.6 @ $11.6 = $250.56; TP: $11.429; stop: $12.18 (leverage:10, profitpct:15%)
+#  Runtime.calc: 0.002 seconds
+#  set isolated and leverage 10: OK
+#  Runtime.margin_switch.api: 0.077 seconds
+#  result buyorder: OK
+#  Runtime.place_order.api: 0.02 seconds
+#  Runtime.total: 0.099 seconds 
+# NOTE: moving margin switch to pre-scouting can imporove it by 0.077s making it total 0.022s to do the buy order.
+# 
 #####################################################
 #
 # _______________ VARIABLES_________________
