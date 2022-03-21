@@ -83,4 +83,4 @@ if __name__ == '__main__':
         elif status == "running":
             count = 0
 
-        time.sleep(20)
+        time.sleep(120)
