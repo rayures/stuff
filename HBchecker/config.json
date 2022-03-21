@@ -1,0 +1,25 @@
+{
+  "general": {
+    "message": "Hawkbot not running!",
+    "hb_process_user": ""
+  },
+  "remote_vps": {
+    "enabled": false,
+    "vps_ip": "",
+    "vps_port": "",
+    "vps_user": "",
+    "vps_pass": ""
+  },
+  "telegram": {
+    "enabled": false,
+    "tg_api_id": "",
+    "tg_api_hash": "",
+    "tg_bot_token": "",
+    "tg_bot_name": "",
+    "tg_receiving_user": ""
+  },
+  "discord": {
+    "enabled": false,
+    "d_webhook_url": ""
+  }
+} 
