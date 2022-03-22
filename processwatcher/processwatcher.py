@@ -14,14 +14,11 @@ with open('config.json', 'r') as config:
     config = json.load(config)
 
 def now():
-    # usage: now()
-    # return datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     return datetime.now()
-
 
 def status_checker():
     process_list = []
-    command = f"ps -u {config['general']['hb_process_user']} -o command | grep -e 'trade.py'"
+    command = f"ps -u {config['general']['process_user']} -o command | grep -e '{config['general']['process_to_watch']}'"
     process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
                                universal_newlines=True)
     for line in process.stdout:
@@ -32,7 +29,6 @@ def status_checker():
     if process_count == 1:
         return "running"
     else:
-        # print(f"{now()}: hawkbot not running")
         return "stopped"
 
 def login_to_vps():
@@ -40,7 +36,7 @@ def login_to_vps():
     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     vps_connect = client.connect(config['remote_vps']['vps_ip'], port=config['remote_vps']['vps_port'], username=config['remote_vps']['vps_user'], password=config['remote_vps']['vps_pass'])
     
-    stdin, stdout, stderr = client.exec_command(f"ps -u {config['general']['hb_process_user']} -o command | grep -e 'trade.py'")
+    stdin, stdout, stderr = client.exec_command(f"ps -u {config['general']['process_user']} -o command | grep -e '{config['general']['process_to_watch']}'")
 
     process_list = []
     for line in stdout:
@@ -62,8 +58,6 @@ def send_to_telegram(message):
 def send_to_discord(message):
     data = {"content": message}
     response = requests.post(config['discord']['d_webhook_url'], json=data)
-
-
 
 if __name__ == '__main__':
     while True:
